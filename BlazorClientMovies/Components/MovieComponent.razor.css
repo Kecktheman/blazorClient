@@ -1,0 +1,12 @@
+﻿figure {
+    aspect-ratio: 4 / 3
+}
+
+figure img {
+    animation: fadeIn .3s;
+}
+
+@keyframes fadeIn {
+  0% { opacity:0; }
+  100% { opacity:1; }
+}

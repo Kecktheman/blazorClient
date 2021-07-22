@@ -1,0 +1,31 @@
+﻿<div class="card column is-4 test2">
+    <div class="card-image">
+        <figure class="is-4by3">
+            <img src="@movieImageUri" alt="Placeholder image">
+        </figure>
+    </div>
+    <div class="card-content">
+        <div class="media">
+            <div class="media-content">
+                <p class="title is-4">@movie.original_title</p>
+            </div>
+        </div>
+        <div class="content">
+            @movie.overview
+            <time datetime="">@movie.release_date</time>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Models.Movie movie { get; set; }
+
+    [Parameter]
+    public string movieImageBaseUri { get; set; }
+
+    private string movieImageUri
+    {
+        get { return movieImageBaseUri + movie.poster_path; }
+    }
+}

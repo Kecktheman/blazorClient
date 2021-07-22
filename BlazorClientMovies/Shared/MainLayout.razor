@@ -1,0 +1,29 @@
+﻿@inherits LayoutComponentBase
+
+<div class="is-flex columns">
+    <div class="sidebar column is-2">
+        <NavMenu Login="@Login" />
+    </div>
+
+    <Login @ref="Login" />
+
+    <div class="main column is-10">
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
+
+@code {
+
+    // Referens till Login-instansen
+    protected Login Login { get; set; }
+
+
+    // React exempelvis ComponentDidMount / useState([])
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(Login?.User?.Email);
+
+    }
+} 

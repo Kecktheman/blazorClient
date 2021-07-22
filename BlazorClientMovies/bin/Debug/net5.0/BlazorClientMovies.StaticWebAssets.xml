@@ -1,0 +1,6 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/" Path="C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\bin\Debug\net5.0\wwwroot\" />
+  <ContentRoot BasePath="/" Path="C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\obj\Debug\net5.0\scopedcss\bundle\" />
+  <ContentRoot BasePath="_content/Blazorise" Path="C:\Users\msjolin\.nuget\packages\blazorise\0.9.3.9\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/Blazorise.Bulma" Path="C:\Users\msjolin\.nuget\packages\blazorise.bulma\0.9.3.9\build\..\staticwebassets\" />
+</StaticWebAssets>

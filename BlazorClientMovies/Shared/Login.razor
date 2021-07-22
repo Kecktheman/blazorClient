@@ -1,0 +1,78 @@
+﻿@if (ShowLogin)
+{
+<div class="modal is-active">
+    <div class="modal-background"></div>
+
+    <EditForm Model="@User" class="modal-card"
+              OnValidSubmit="@HandleValidLogin"
+              OnInvalidSubmit="@HandleInvalidLogin">
+
+        <header class="modal-card-head">
+            <h2>You must log in to use this marvelus website.</h2>
+        </header>
+
+        <section class="modal-card-body">
+            <DataAnnotationsValidator />
+            <Blazorise.ValidationSummary></Blazorise.ValidationSummary>
+
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <InputText class="input" type="email" placeholder="Email" @bind-Value="@User.Email" />
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                    </span>
+                    <ValidationMessage For="@(() => User.Email)" />
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left">
+                    <InputText class="input" type="password" placeholder="Password" @bind-Value="@User.Password" />
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <ValidationMessage For="@(() => User.Password)" />
+                </p>
+            </div> 
+        </section>
+
+        <footer class="modal-card-foot">
+            <div class="field">
+                <p class="control">
+                    <button class="button is-success">
+                        Login
+                    </button>
+                </p>
+            </div>
+        </footer>
+
+    </EditForm>
+</div>
+}
+
+@inject IJSRuntime JSRuntime
+
+@code {
+    public bool ShowLogin { get; set; } = true;
+    public User User { get; set; } = new User();
+
+    private async Task HandleValidLogin()
+    {
+        await JSRuntime.InvokeVoidAsync("localStorage.setItem", "userEmail", User.Email);
+
+        User.ErrorMessage = "";
+        ShowLogin = false;
+        StateHasChanged();
+    }
+
+    private async Task HandleInvalidLogin()
+    {
+        User.ErrorMessage = "Invalid login";
+    }
+
+    public void HandleLogout()
+    {
+        ShowLogin = true;
+        JSRuntime.InvokeVoidAsync("localStorage.removeItem", "userEmail");
+        StateHasChanged();
+    }
+}
