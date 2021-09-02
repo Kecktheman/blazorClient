@@ -1,78 +1,102 @@
 ﻿@if (ShowLogin)
 {
-<div class="modal is-active">
-    <div class="modal-background"></div>
+    <div class="modal is-active">
+        <div class="modal-background"></div>
 
-    <EditForm Model="@User" class="modal-card"
-              OnValidSubmit="@HandleValidLogin"
-              OnInvalidSubmit="@HandleInvalidLogin">
+        <EditForm Model="@User" class="modal-card" OnValidSubmit="@HandleValidLogin" OnInvalidSubmit="@HandleInvalidLogin">
 
-        <header class="modal-card-head">
-            <h2>You must log in to use this marvelus website.</h2>
-        </header>
+            <header class="modal-card-head">
+                <h2>You must log in to use this marvelous website!</h2>
+            </header>
 
-        <section class="modal-card-body">
-            <DataAnnotationsValidator />
-            <Blazorise.ValidationSummary></Blazorise.ValidationSummary>
+            <section class="modal-card-body">
+                <DataAnnotationsValidator />
 
-            <div class="field">
-                <p class="control has-icons-left has-icons-right">
-                    <InputText class="input" type="email" placeholder="Email" @bind-Value="@User.Email" />
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
-                    </span>
-                    <ValidationMessage For="@(() => User.Email)" />
-                </p>
-            </div>
-            <div class="field">
-                <p class="control has-icons-left">
-                    <InputText class="input" type="password" placeholder="Password" @bind-Value="@User.Password" />
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-lock"></i>
-                    </span>
-                    <ValidationMessage For="@(() => User.Password)" />
-                </p>
-            </div> 
-        </section>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <InputText class="input" type="email" placeholder="Email" @bind-Value="@User.Email" />
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <ValidationMessage For="@(() => User.Email)" />
+                    </p>
+                </div>
 
-        <footer class="modal-card-foot">
-            <div class="field">
-                <p class="control">
-                    <button class="button is-success">
-                        Login
-                    </button>
-                </p>
-            </div>
-        </footer>
+                <div class="field">
+                    <p class="control has-icons-left">
+                        <InputText class="input" type="password" placeholder="Password" @bind-Value="@User.Password" />
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                        <ValidationMessage For="@(() => User.Password)" />
+                    </p>
+                </div>
+            </section>
 
-    </EditForm>
-</div>
+            <footer class="modal-card-foot">
+                <div class="field">
+                    <p class="control">
+                        <button class="button is-success">
+                            Login
+                        </button>
+                    </p>
+                </div>
+            </footer>
+
+        </EditForm>
+    </div>
 }
 
 @inject IJSRuntime JSRuntime
 
 @code {
-    public bool ShowLogin { get; set; } = true;
+    [Parameter]
     public User User { get; set; } = new User();
+
+    [Parameter]
+    public EventCallback<User> UserChanged { get; set; }
+
+    protected bool ShowLogin { get; set; }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var currentUserEmail = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "userEmail");
+
+        if (String.IsNullOrEmpty((string)currentUserEmail) == false)
+        {
+            ShowLogin = false;
+        }
+        else
+        {
+            ShowLogin = true;
+        }
+
+        base.StateHasChanged();
+    }
 
     private async Task HandleValidLogin()
     {
         await JSRuntime.InvokeVoidAsync("localStorage.setItem", "userEmail", User.Email);
 
-        User.ErrorMessage = "";
         ShowLogin = false;
-        StateHasChanged();
+
+        // Updates data in parent component (two way binding) - not working with StateHasChanged()
+        await UserChanged.InvokeAsync(User);
     }
 
-    private async Task HandleInvalidLogin()
+    private void HandleInvalidLogin()
     {
-        User.ErrorMessage = "Invalid login";
+        // Error message etc.
     }
 
-    public void HandleLogout()
+    public async Task HandleLogout()
     {
+        await JSRuntime.InvokeVoidAsync("localStorage.removeItem", "userEmail");
+
         ShowLogin = true;
-        JSRuntime.InvokeVoidAsync("localStorage.removeItem", "userEmail");
-        StateHasChanged();
+
+        base.StateHasChanged();
     }
 }

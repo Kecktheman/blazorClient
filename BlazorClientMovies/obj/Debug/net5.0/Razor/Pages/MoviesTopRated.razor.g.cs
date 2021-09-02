@@ -66,22 +66,15 @@ using Microsoft.JSInterop;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using BlazorClientMovies;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 11 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Shared;
+using BlazorClientMovies.Services;
 
 #line default
 #line hidden
@@ -95,13 +88,20 @@ using BlazorClientMovies.Models;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Components;
+using BlazorClientMovies.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+using BlazorClientMovies.Shared.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using Blazorise;
 
 #line default
@@ -124,7 +124,7 @@ using Blazorise;
 #line default
 #line hidden
 #nullable disable
-            __builder.OpenComponent<BlazorClientMovies.Shared.Loader>(3);
+            __builder.OpenComponent<BlazorClientMovies.Shared.Components.Loader>(3);
             __builder.CloseComponent();
 #nullable restore
 #line 9 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Pages\MoviesTopRated.razor"
@@ -139,7 +139,7 @@ using Blazorise;
 #line default
 #line hidden
 #nullable disable
-            __builder.OpenComponent<BlazorClientMovies.Components.MovieComponent>(4);
+            __builder.OpenComponent<BlazorClientMovies.Shared.Components.MovieComponent>(4);
             __builder.AddAttribute(5, "movie", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<BlazorClientMovies.Models.Movie>(
 #nullable restore
 #line 16 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Pages\MoviesTopRated.razor"

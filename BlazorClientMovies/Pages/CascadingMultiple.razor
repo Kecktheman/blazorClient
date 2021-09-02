@@ -1,0 +1,48 @@
+﻿@page "/multiple-cascading-parameters"
+
+<h1>Multiple cascading parameters</h1>
+
+<p>
+    <h4>Getting CascadingParameter by type</h4>
+    <code>CascadedString:</code>@CascadedString
+</p>
+<hr />
+
+<p>
+    <h4>Getting CascadingParameter by type (int)</h4>
+    <code>CascadedInt:</code>@CascadedInt
+</p>
+<hr />
+
+<p>
+    <h4>Getting CascadingParameter by it's name</h4>
+    <code>CascadedWithName1:</code>@CascadedWithName1
+</p>
+<hr />
+
+<p>
+    <h4>Getting CascadingParameter by it's name</h4>
+    <code>CascadedWithName2:</code>@CascadedWithName2
+</p>
+
+@code {
+    [CascadingParameter]
+    protected string CascadedString { get; set; }
+
+    [CascadingParameter]
+    protected int CascadedInt { get; set; }
+
+
+    //[CascadingParameter()]
+    //protected string CascadedWithName1 { get; set; }
+
+    //[CascadingParameter]
+    //protected int CascadedWithName2 { get; set; }
+
+
+    [CascadingParameter(Name = "CascadingValueStringName")]
+    protected string CascadedWithName1 { get; set; }
+
+    [CascadingParameter(Name = "CascadingValueIntName")]
+    protected int CascadedWithName2 { get; set; }
+}

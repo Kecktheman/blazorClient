@@ -69,22 +69,15 @@ using Microsoft.JSInterop;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using BlazorClientMovies;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 11 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Shared;
+using BlazorClientMovies.Services;
 
 #line default
 #line hidden
@@ -98,13 +91,20 @@ using BlazorClientMovies.Models;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Components;
+using BlazorClientMovies.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+using BlazorClientMovies.Shared.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using Blazorise;
 
 #line default
@@ -118,18 +118,36 @@ using Blazorise;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 17 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Shared\MainLayout.razor"
+#line 35 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Shared\MainLayout.razor"
        
 
-    // Referens till Login-instansen
-    protected Login Login { get; set; }
+    string CascadingValueString = "Cascaded string";
+    int CascadingValueInt = 25;
+
+    string CascadingValueStringName = "Cascaded string with a name";
+    int CascadingValueIntName = 100;
 
 
-    // React exempelvis ComponentDidMount / useState([])
-    protected override async Task OnInitializedAsync()
+
+
+    protected Login Login { get; set; } = new Login();
+
+    private string displayEmail
     {
-        Console.WriteLine(Login?.User?.Email);
+        get
+        {
+            if (Login != null && Login.User != null)
+            {
+                return Login.User.Email;
+            }
+            else
+                return "no email found";
+        }
+    }
 
+    public async void HandleLogout()
+    {
+        await Login.HandleLogout();
     }
 
 #line default

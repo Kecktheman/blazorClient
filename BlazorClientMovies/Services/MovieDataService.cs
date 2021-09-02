@@ -8,25 +8,27 @@ using System.Threading.Tasks;
 
 namespace BlazorClientMovies.Services
 {
-    public class MovieDataService : IMovieDataService
-    {
-        HttpClient httpClient = new HttpClient();
+     public class MovieDataService : IMovieDataService
+     {
+          HttpClient httpClient = new HttpClient();
 
-        public async Task<MoviePage> GetTopRatedMoviePage(int pageNo)
-        {
-            var result = new MoviePage();
+          public async Task<MoviePage> GetTopRatedMoviePage(int pageNumber = 1)
+          {
+               var result = new MoviePage();
 
-            try
-            {
-                result = await httpClient.GetFromJsonAsync<MoviePage>("https://api.themoviedb.org/3/movie/top_rated?api_key=67a96a5052d3cf9da71ea15dce3f94aa&language=en-US&page=1");
+               string apiBaseUri = "https://api.themoviedb.org/3/movie/top_rated?api_key=67a96a5052d3cf9da71ea15dce3f94aa&language=en-US&page=";
+               string pageNumberString = pageNumber.ToString();
 
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e);
-            }
+               try
+               {
+                    result = await httpClient.GetFromJsonAsync<MoviePage>(apiBaseUri + pageNumberString);
+               }
+               catch (Exception e)
+               {
+                    Console.WriteLine(e);
+               }
 
-            return result;
-        }
-    }
+               return result;
+          }
+     }
 }

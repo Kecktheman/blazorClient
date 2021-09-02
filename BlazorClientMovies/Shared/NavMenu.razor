@@ -1,17 +1,5 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">BlazorClientMovies</a>
-    <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-</div>
-
-
-<Button @onclick="@HandleLogout">Logout</Button>
-
-@*<div>@displayEmail</div>*@
-
-<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-column">
+﻿<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column py-3">
 
         @foreach (Navigation navigation in NavigationMap.Navigations)
         {
@@ -22,26 +10,30 @@
             </li>
         }
 
-        @*<li class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="top-rated">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Top rated
-            </NavLink>
-        </li>
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="slow-loading">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Slow loading movies
-            </NavLink>
-        </li>*@
+        @*
+            <li class="nav-item px-3">
+                 <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Home
+                 </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="top-rated">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Top rated
+                </NavLink>
+            </li>
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href="slow-loading">
+                    <span class="oi oi-list-rich" aria-hidden="true"></span> Slow loading movies
+                </NavLink>
+            </li>
+        *@
+
     </ul>
+
+    <br /><br />
 </div>
 
 @code {
-
     [Parameter]
     public Login Login { get; set; }
 
@@ -49,31 +41,9 @@
 
     private string NavMenuCssClass => collapseNavMenu ? "" : null;
 
-    //private string displayEmail
-    //{
-    //    get
-    //    {
-    //        if (Login != null && Login.User != null)
-    //        {
-    //            StateHasChanged();
-    //            return Login.User.Email;
-    //        }
-    //        else
-    //            return "no email found";
-    //    }
-    //}
-
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
-    }
-
-    public void HandleLogout()
-    {
-        if (Login != null)
-        {
-            Login.HandleLogout();
-        }
     }
 
 }

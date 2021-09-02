@@ -12,8 +12,21 @@ namespace BlazorClientMovies.Models
         static NavigationMap()
         {
             Navigations.Add(new Navigation() { Title = "Home", Path = "" });
+
+            Navigations.Add(new Navigation() { Title = "Counter", Path = "counter" });
+            Navigations.Add(new Navigation() { Title = "Counter separated", Path = "counter-separated" });
+
+            Navigations.Add(new Navigation() { Title = "Attribute parameters", Path = "attribute-parameters" });
+            Navigations.Add(new Navigation() { Title = "Route parameters", Path = "parameters" });
+            Navigations.Add(new Navigation() { Title = "Optional route parameters", Path = "optional-parameters" });
+            Navigations.Add(new Navigation() { Title = "Cascading parameters", Path = "cascading-parameters" });
+            Navigations.Add(new Navigation() { Title = "Cascading multiple", Path = "multiple-cascading-parameters" });
+
+            Navigations.Add(new Navigation() { Title = "Component lifecycle", Path = "component-lifecycle" });
+            Navigations.Add(new Navigation() { Title = "Data bindings", Path = "data-bindings" });
+            Navigations.Add(new Navigation() { Title = "Javascript?", Path = "javascript" });
+
             Navigations.Add(new Navigation() { Title = "Top rated movies", Path = "top-rated" });
-            Navigations.Add(new Navigation() { Title = "Slow loading page", Path = "slow-loading" });
         }
     }
 

@@ -12,6 +12,10 @@
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
 
+.sidebar li a {
+    line-height: unset;
+}
+
 .top-row {
     background-color: #f7f7f7;
     border-bottom: 1px solid #d6d5d5;
@@ -21,15 +25,23 @@
     align-items: center;
 }
 
-    .top-row ::deep a, .top-row .btn-link {
-        white-space: nowrap;
-        margin-left: 1.5rem;
-    }
+.top-row ::deep a, .top-row .btn-link {
+    white-space: nowrap;
+    margin-left: 1.5rem;
+}
 
-    .top-row a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+.top-row a:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#sidebar--user {
+    justify-content: space-between;
+}
+
+#sidebar--user span {
+    color: #fff;
+}
 
 @media (max-width: 640.98px) {
     .top-row:not(.auth) {
@@ -52,7 +64,7 @@
 
     .sidebar {
         width: 250px;
-        height: 100vh;
+        min-height: 100vh;
         position: sticky;
         top: 0;
     }

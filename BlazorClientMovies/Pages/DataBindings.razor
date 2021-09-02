@@ -1,0 +1,62 @@
+﻿@page "/data-bindings"
+
+<h1>Data bindings</h1>
+
+<p>
+    <h4>Default bind event</h4>
+
+    <input @bind="InputValue1" />
+
+    <div>
+        <code>InputValue1</code>: @InputValue1
+    </div>
+</p>
+
+
+<p>
+    <h4>Bind specific event "oninput"</h4>
+
+    <input @bind="InputValue2" @bind:event="oninput" />
+    <button @onclick="ClearInput">Clear</button>
+
+    <div>
+        <code>InputValue2</code>: @InputValue2
+    </div>
+</p>
+
+
+<p>
+    <h4>Capture event args</h4>
+
+    <input @bind="InputValue3" @bind:event="oninput" @onkeypress="CaptureKeyInput" />
+    <button @onclick="CaptureMouseInput">Click me!</button>
+
+    <div>
+        <code>InputValue3Result</code>: @InputValue3Result
+    </div>
+</p>
+
+@code {
+    private string InputValue1;
+
+    private string InputValue2;
+
+    private string InputValue3, InputValue3Result;
+
+
+    private void ClearInput()
+    {
+        InputValue2 = String.Empty;
+    }
+
+    private void CaptureKeyInput(KeyboardEventArgs e)
+    {
+        InputValue3Result += e.Code.ToString();
+        InputValue3 = String.Empty;
+    }
+
+    private void CaptureMouseInput(MouseEventArgs e)
+    {
+        InputValue3Result += e.Button.ToString();
+    }
+}

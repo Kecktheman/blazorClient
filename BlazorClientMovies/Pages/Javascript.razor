@@ -1,0 +1,33 @@
+﻿@page "/javascript"
+
+<h1>Javascript?</h1>
+
+<p>
+    <button @onclick="ChangeBackgroundColorWrong">This does not work - nice try.</button>
+</p>
+
+<p>
+    <button @onclick="ChangeBackgroundColorRight">Change background color with javascript windows functions!</button>
+</p>
+
+@inject IJSRuntime JSRuntime
+
+@code {
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Console log from System.Console class.");
+
+        await JSRuntime.InvokeVoidAsync("console.log", "Console log from javascript.");
+    }
+
+    private async Task ChangeBackgroundColorWrong()
+    {
+        await JSRuntime.InvokeVoidAsync("document.body.style.backgroundColor", "green"); // Funkar inte
+    }
+
+    private async Task ChangeBackgroundColorRight()
+    {
+        await JSRuntime.InvokeVoidAsync("window.changeBackgroundColor", "green"); // Funkar finfint!
+    }
+}

@@ -1,0 +1,17 @@
+﻿@page "/optional-parameters/{value1:int?}"
+
+<h1>Optional route parameters</h1>
+
+<p>
+    <h4>Optional parameter value</h4>
+    <NavLink class="nav-link" href="/optional-parameters/1" Match="NavLinkMatch.All">/optional-parameters/1</NavLink>
+    <div>
+        <code>Value1:</code> @Value1
+    </div>
+</p>
+
+@code {
+    [Parameter]
+    public int? Value1 { get; set; }
+
+}

@@ -1,0 +1,16 @@
+﻿@page "/cascading-parameters"
+
+<h1>Cascading parameters</h1>
+
+<p>
+    <code>CascadedString:</code>@CascadedString
+</p>
+
+@code {
+    [Parameter]
+    public string Parameter { get; set; }
+
+    [CascadingParameter]
+    protected string CascadedString { get; set; }
+
+}

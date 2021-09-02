@@ -69,22 +69,15 @@ using Microsoft.JSInterop;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using BlazorClientMovies;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 11 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Shared;
+using BlazorClientMovies.Services;
 
 #line default
 #line hidden
@@ -98,13 +91,20 @@ using BlazorClientMovies.Models;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Components;
+using BlazorClientMovies.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+using BlazorClientMovies.Shared.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using Blazorise;
 
 #line default
@@ -118,30 +118,56 @@ using Blazorise;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 54 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Shared\Login.razor"
+#line 52 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Shared\Login.razor"
        
-    public bool ShowLogin { get; set; } = true;
+    [Parameter]
     public User User { get; set; } = new User();
+
+    [Parameter]
+    public EventCallback<User> UserChanged { get; set; }
+
+    protected bool ShowLogin { get; set; }
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        var currentUserEmail = await JSRuntime.InvokeAsync<string>("localStorage.getItem", "userEmail");
+
+        if (String.IsNullOrEmpty((string)currentUserEmail) == false)
+        {
+            ShowLogin = false;
+        }
+        else
+        {
+            ShowLogin = true;
+        }
+
+        base.StateHasChanged();
+    }
 
     private async Task HandleValidLogin()
     {
         await JSRuntime.InvokeVoidAsync("localStorage.setItem", "userEmail", User.Email);
 
-        User.ErrorMessage = "";
         ShowLogin = false;
-        StateHasChanged();
+
+        // Updates data in parent component (two way binding) - not working with StateHasChanged()
+        await UserChanged.InvokeAsync(User);
     }
 
-    private async Task HandleInvalidLogin()
+    private void HandleInvalidLogin()
     {
-        User.ErrorMessage = "Invalid login";
+        // Error message etc.
     }
 
-    public void HandleLogout()
+    public async Task HandleLogout()
     {
+        await JSRuntime.InvokeVoidAsync("localStorage.removeItem", "userEmail");
+
         ShowLogin = true;
-        JSRuntime.InvokeVoidAsync("localStorage.removeItem", "userEmail");
-        StateHasChanged();
+
+        base.StateHasChanged();
     }
 
 #line default

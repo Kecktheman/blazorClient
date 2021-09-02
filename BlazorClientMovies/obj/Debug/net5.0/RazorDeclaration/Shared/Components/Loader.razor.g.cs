@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace BlazorClientMovies.Components
+namespace BlazorClientMovies.Shared.Components
 {
     #line hidden
     using System;
@@ -69,22 +69,15 @@ using Microsoft.JSInterop;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using BlazorClientMovies;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 11 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Shared;
+using BlazorClientMovies.Services;
 
 #line default
 #line hidden
@@ -98,42 +91,32 @@ using BlazorClientMovies.Models;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Components;
+using BlazorClientMovies.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+using BlazorClientMovies.Shared.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using Blazorise;
 
 #line default
 #line hidden
 #nullable disable
-    public partial class MovieComponent : Microsoft.AspNetCore.Components.ComponentBase
+    public partial class Loader : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
         {
         }
         #pragma warning restore 1998
-#nullable restore
-#line 20 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Components\MovieComponent.razor"
-       
-    [Parameter]
-    public Models.Movie movie { get; set; }
-
-    [Parameter]
-    public string movieImageBaseUri { get; set; }
-
-    private string movieImageUri
-    {
-        get { return movieImageBaseUri + movie.poster_path; }
-    }
-
-#line default
-#line hidden
-#nullable disable
     }
 }
 #pragma warning restore 1591

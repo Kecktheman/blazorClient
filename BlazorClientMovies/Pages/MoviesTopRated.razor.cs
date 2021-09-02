@@ -10,15 +10,14 @@ namespace BlazorClientMovies.Pages
 {
     public partial class MoviesTopRated : ComponentBase
     {
+        private MovieDataService movieDataService = new MovieDataService();
+
         protected MoviePage moviePage { get; set; } = new MoviePage();
         protected bool isLoading { get; set; }
         protected string movieImageBaseUri { get; set; } = "https://image.tmdb.org/t/p/original";
 
 
-        private MovieDataService movieDataService = new MovieDataService();
 
-
-        // React exempelvis ComponentDidMount / useState([])
         protected override async Task OnInitializedAsync()
         {
             moviePage.results = new List<Movie>();

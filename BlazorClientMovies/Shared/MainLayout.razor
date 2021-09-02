@@ -2,28 +2,82 @@
 
 <div class="is-flex columns">
     <div class="sidebar column is-2">
-        <NavMenu Login="@Login" />
+
+        <NavMenu />
+
+        <div id="sidebar--user" class="is-flex justify-content-between px-3" Flex="Flex.JustifyContent.Between">
+            <span>@displayEmail</span>
+            <button @onclick="@HandleLogout">Logout</button>
+        </div>
     </div>
 
-    <Login @ref="Login" />
+
+    <Login @ref="Login" @bind-User="@Login.User" />
+
 
     <div class="main column is-10">
         <div class="content px-4">
-            @Body
+
+            <CascadingValue Value="CascadingValueString">
+                <CascadingValue Value="CascadingValueInt">
+                    <CascadingValue Value="CascadingValueStringName" Name="CascadingValueStringName">
+                        <CascadingValue Value="CascadingValueIntName" Name="CascadingValueIntName">
+                            @Body
+                        </CascadingValue>
+                    </CascadingValue>
+                </CascadingValue>
+            </CascadingValue>
+
         </div>
     </div>
 </div>
 
 @code {
 
-    // Referens till Login-instansen
-    protected Login Login { get; set; }
+    string CascadingValueString = "Cascaded string";
+    int CascadingValueInt = 25;
+
+    string CascadingValueStringName = "Cascaded string with a name";
+    int CascadingValueIntName = 100;
 
 
-    // React exempelvis ComponentDidMount / useState([])
-    protected override async Task OnInitializedAsync()
+
+
+    protected Login Login { get; set; } = new Login();
+
+    private string displayEmail
     {
-        Console.WriteLine(Login?.User?.Email);
-
+        get
+        {
+            if (Login != null && Login.User != null)
+            {
+                return Login.User.Email;
+            }
+            else
+                return "no email found";
+        }
     }
-} 
+
+    public async void HandleLogout()
+    {
+        await Login.HandleLogout();
+    }
+}
+
+
+
+@*<CascadingValue Value="CascadingValueString">
+        <CascadingValue Value="CascadingValueInt">
+            @Body
+        </CascadingValue>
+    </CascadingValue>*@
+
+@*<CascadingValue Value="CascadingValueString">
+    <CascadingValue Value="CascadingValueInt">
+        <CascadingValue Value="CascadingValueStringName" Name="CascadingValueStringName">
+            <CascadingValue Value="CascadingValueIntName" Name="CascadingValueIntName">
+                @Body
+            </CascadingValue>
+        </CascadingValue>
+    </CascadingValue>
+</CascadingValue>*@

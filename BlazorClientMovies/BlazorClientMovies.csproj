@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Components\**" />
+    <Content Remove="Components\**" />
+    <EmbeddedResource Remove="Components\**" />
+    <None Remove="Components\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Pages\MoviesTopRated - Copy.razor.cs" />
   </ItemGroup>
 
@@ -15,7 +22,6 @@
 
   <ItemGroup>
     <Content Include="Pages\MoviesTopRated.razor.cs" />
-    <Content Include="Shared\Loader.razor.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,10 +34,6 @@
 
   <ItemGroup>
     <ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Components\MovieComponent.razor" />
   </ItemGroup>
 
 </Project>

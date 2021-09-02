@@ -69,22 +69,15 @@ using Microsoft.JSInterop;
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using BlazorClientMovies;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Services;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
 #line 11 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Shared;
+using BlazorClientMovies.Services;
 
 #line default
 #line hidden
@@ -98,13 +91,20 @@ using BlazorClientMovies.Models;
 #nullable disable
 #nullable restore
 #line 13 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
-using BlazorClientMovies.Components;
+using BlazorClientMovies.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 14 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
+using BlazorClientMovies.Shared.Components;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 15 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\_Imports.razor"
 using Blazorise;
 
 #line default
@@ -118,9 +118,8 @@ using Blazorise;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 43 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Shared\NavMenu.razor"
+#line 36 "C:\Users\msjolin\source\repos\BlazorClientMovies\BlazorClientMovies\Shared\NavMenu.razor"
        
-
     [Parameter]
     public Login Login { get; set; }
 
@@ -128,32 +127,9 @@ using Blazorise;
 
     private string NavMenuCssClass => collapseNavMenu ? "" : null;
 
-    //private string displayEmail
-    //{
-    //    get
-    //    {
-    //        if (Login != null && Login.User != null)
-    //        {
-    //            StateHasChanged();
-    //            return Login.User.Email;
-    //        }
-    //        else
-    //            return "no email found";
-    //    }
-    //}
-
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
-    }
-
-    public void HandleLogout()
-    {
-        Console.WriteLine("logout");
-        if (Login != null)
-        {
-            Login.HandleLogout();
-        }
     }
 
 

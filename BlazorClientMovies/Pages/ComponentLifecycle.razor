@@ -1,0 +1,67 @@
+﻿@page "/component-lifecycle"
+
+<h1>Component lifecycle</h1>
+
+<br /><br />
+
+@foreach (var item in LifeCycleEvents)
+{
+<div>
+    <code>@item</code>
+    <br />
+</div>
+}
+
+<br /><br />
+<a href="https://executecommands.com/aspcore-blazor-lifecycle-methods/" target="_blank">https://executecommands.com/aspcore-blazor-lifecycle-methods/</a>
+
+
+@code {
+    public List<string> LifeCycleEvents = new List<string>();
+
+    protected override void OnInitialized()
+    {
+        LifeCycleEvents.Add("OnInitialized()");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        LifeCycleEvents.Add("OnInitializedAsync()");
+        await Task.Delay(500);
+    }
+
+    protected override void OnParametersSet()
+    {
+        LifeCycleEvents.Add("OnParametersSet()");
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        LifeCycleEvents.Add("OnParametersSetAsync()");
+        await Task.Delay(500);
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        LifeCycleEvents.Add("OnAfterRender()");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        LifeCycleEvents.Add("OnAfterRenderAsync()");
+        await Task.Delay(500);
+    }
+
+    protected override bool ShouldRender()
+    {
+        LifeCycleEvents.Add("ShouldRender()");
+        return true;
+    }
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        LifeCycleEvents.Add("SetParametersAsync()");
+        await base.SetParametersAsync(parameters);
+        await Task.Delay(500);
+    }
+}
