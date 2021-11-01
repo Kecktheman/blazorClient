@@ -1355,19 +1355,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\msjolin\\.nuget\\packages\\": {}
+    "C:\\Users\\asa\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\msjolin\\source\\repos\\BlazorClientMovies\\BlazorClientMovies\\BlazorClientMovies.csproj",
+      "projectUniqueName": "C:\\Users\\msjolin\\repos\\blazorClient\\BlazorClientMovies\\BlazorClientMovies.csproj",
       "projectName": "BlazorClientMovies",
-      "projectPath": "C:\\Users\\msjolin\\source\\repos\\BlazorClientMovies\\BlazorClientMovies\\BlazorClientMovies.csproj",
-      "packagesPath": "C:\\Users\\msjolin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\msjolin\\source\\repos\\BlazorClientMovies\\BlazorClientMovies\\obj\\",
+      "projectPath": "C:\\Users\\msjolin\\repos\\blazorClient\\BlazorClientMovies\\BlazorClientMovies.csproj",
+      "packagesPath": "C:\\Users\\asa\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\msjolin\\repos\\blazorClient\\BlazorClientMovies\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\msjolin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\asa\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1375,7 +1375,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.litium.com/nuget/": {}
       },
       "frameworks": {
         "net5.0": {
@@ -1428,7 +1429,7 @@
         "downloadDependencies": [
           {
             "name": "Microsoft.NETCore.App.Runtime.browser-wasm",
-            "version": "[5.0.2, 5.0.2]"
+            "version": "[5.0.11, 5.0.11]"
           }
         ],
         "frameworkReferences": {
@@ -1436,7 +1437,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {

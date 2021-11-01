@@ -4,6 +4,27 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.loader-wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    z-index: 3;
+    font-size: 5rem;
+    border: 2px solid rgb(5, 39, 103);
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+
+#app > * {
+    -webkit-animation: fadeInDown 250ms ease-in-out; /* Chrome, Safari, Opera */
+    animation: fadeInDown 250ms ease-in-out;
+}
+
 .main {
     position: relative;
 }
@@ -51,4 +72,30 @@ a, .btn-link {
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+/* Standard syntax */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
